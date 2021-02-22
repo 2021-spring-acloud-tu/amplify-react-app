@@ -21,8 +21,12 @@ const App = () => {
   const fetchCoins = async () => {
 
     try {
+      //loading = true;
+      updateLoading(true);
       const data = await API.get('apif65452a3', '/coins');
       updateCoins(data.coins);
+      //loading = false;
+      updateLoading(false);
     }
 
     catch(err) {
@@ -47,9 +51,15 @@ const App = () => {
     , []
   );
 
+  //let loading = true;
+  const [loading, updateLoading] = useState(true);
+
   return (
     <div className="App">
-      {
+
+      { loading && <h2>Loading...</h2>}
+
+      { !loading && 
         coins.map(
           (coin, index) => (
             <div 
