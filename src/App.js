@@ -19,12 +19,25 @@ const App = () => {
 
   // Define function to all API
   const fetchCoins = async () => {
-    const data = await API.get('apif65452a3', '/coins');
-    updateCoins(data.coins);
 
-    //coins = data.coins;
-    //console.log("Remember to show this dummy ! ! !", coins);
+    try {
+      const data = await API.get('apif65452a3', '/coins');
+      updateCoins(data.coins);
+    }
+
+    catch(err) {
+      console.error(err);
+    }    
   };
+
+  // const fetchCoins = () => {
+    
+  //   const data = API.get('apif65452a3tom', '/coins')
+  //     .then(response => updateCoins(response.coins))
+  //     .catch(err => console.error(err))
+  //   ;
+
+  // }
 
   // Call fetchCoins function when component loads
   useEffect(
