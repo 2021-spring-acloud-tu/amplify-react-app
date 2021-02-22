@@ -15,11 +15,15 @@ const App = () => {
   
   // Create coins variable and set to empty array
   const [coins, updateCoins] = useState([]);
+  //let coins = [];
 
   // Define function to all API
   const fetchCoins = async () => {
     const data = await API.get('apif65452a3', '/coins');
     updateCoins(data.coins);
+
+    //coins = data.coins;
+    //console.log("Remember to show this dummy ! ! !", coins);
   };
 
   // Call fetchCoins function when component loads
