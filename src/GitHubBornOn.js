@@ -1,10 +1,35 @@
-import React from 'react';
+import React
+    ,{
+        useState
+        , useEffect
+    } from 'react';
+
+import { API } from 'aws-amplify';
 
 export const GitHubBornOn = () => {
 
+    const fetchBornInfo = async () => {
+        try {
+            const data = await API.get("apif65452a3", "/born");
+            updateBornInfo(data.borninfo);
+        }
+        catch(err) {
+            console.error(err);
+        }
+    };
+
+    useEffect(
+        () => {
+            fetchBornInfo();
+        }
+        , []
+    );
+
+    const [bornInfo, updateBornInfo] = useState({});
+
     return(
         <h2>
-            my github name goes here - my git hub created_at goes here
+            {bornInfo.login} - {bornInfo.created_at}
         </h2>
     );
 };
