@@ -28,8 +28,13 @@ export const GitHubBornOn = () => {
     const [bornInfo, updateBornInfo] = useState({});
 
     return(
-        <h2>
-            {bornInfo.login} - {bornInfo.created_at}
-        </h2>
+        <>
+            <h2>
+                {bornInfo.login} - {bornInfo.created_at}
+            </h2>
+            <h5>
+                {bornInfo.public_repos} public repos
+            </h5>
+        </>
     );
 };
