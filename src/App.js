@@ -15,6 +15,7 @@ const App = () => {
   
   // Create coins variable and set to empty array
   const [coins, updateCoins] = useState([]);
+  //let coins = [];
 
   // Define function to all API
   const fetchCoins = async () => {
@@ -24,6 +25,8 @@ const App = () => {
     const data = await API.get('apif65452a3', `/coins?limit=${limit}&start=${start}`);
 
     updateCoins(data.coins);
+    //coins = data.coins;
+    console.log(coins);
   };
 
   // Call fetchCoins function when component loads
