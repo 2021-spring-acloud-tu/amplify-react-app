@@ -11,6 +11,9 @@ import { API } from 'aws-amplify';
 import logo from './logo.svg';
 import './App.css';
 
+import { GitHubBornOn } from './GitHubBornOn';
+
+
 const App = () => {
   
   // Create coins variable and set to empty array
@@ -71,45 +74,48 @@ const App = () => {
   const [loading, updateLoading] = useState(true);
 
   return (
-    <div className="App">
+    <>
+      <div className="App">
 
-      <input
-        placeholder="Enter a starting index"
-        onChange={e => updateInputValues('start', e.target.value)}
-      />
-      
-      <input
-        onChange={e => updateInputValues('limit', e.target.value)}
-        placeholder="Enter a limit"
-      />
+        <input
+          placeholder="Enter a starting index"
+          onChange={e => updateInputValues('start', e.target.value)}
+        />
+        
+        <input
+          onChange={e => updateInputValues('limit', e.target.value)}
+          placeholder="Enter a limit"
+        />
 
-      <button 
-        onClick={fetchCoins}
-      >
-        Fetch Coins
-      </button>
+        <button 
+          onClick={fetchCoins}
+        >
+          Fetch Coins
+        </button>
 
 
-      {loading && <h2>Loading...</h2>}
+        {loading && <h2>Loading...</h2>}
 
-      {
-        !loading &&
-        coins.map(
-          (coin, index) => (
-            <div 
-              key={index}
-            >
-              <h2>
-                {coin.name} - {coin.symbol}
-              </h2>
-              <h5>
-                ${coin.price_usd}
-              </h5>
-            </div>
+        {
+          !loading &&
+          coins.map(
+            (coin, index) => (
+              <div 
+                key={index}
+              >
+                <h2>
+                  {coin.name} - {coin.symbol}
+                </h2>
+                <h5>
+                  ${coin.price_usd}
+                </h5>
+              </div>
+            )
           )
-        )
-      }
-    </div>
+        }
+      </div>
+      <GitHubBornOn />
+    </>
   );
 }
 
